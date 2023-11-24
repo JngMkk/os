@@ -22,6 +22,7 @@ def consumer_task(conn: "Connection") -> None:
 if __name__ == "__main__":
     # 두 엔드포인트 (두 프로세스) 간의 통신을 구축하는 메커니즘으로 구성
     # 프로세스 간 메시지를 교환하기 위해 채널을 생성하는 방법
+    # 메모리에 생성됨
     producer_conn, consumer_conn = Pipe()  # 연결 객체 반환
     consumer = Process(target=consumer_task, args=(consumer_conn,))
     producer = Process(target=producer_task, args=(producer_conn,))
